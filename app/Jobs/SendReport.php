@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Mail\Mailer;
 use App\Notifications\TemplateSlack;
 use \App\User;
-class SendWelcomeEmail implements ShouldQueue
+class SendReport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -31,16 +31,16 @@ class SendWelcomeEmail implements ShouldQueue
      */
 public function handle(Mailer $mailer)
     {
-        $mailer->send('welcomes', ['data'=>'data'], function ($message) {
+        $mailer->send('welcome', ['data'=>'data'], function ($message) {
 
-            $message->from('thanhtutoo95@gmail.com', 'Christian Nwmaba');
+            $message->from('heinhtut95@gmail.com', 'Report');
 
             $message->to('thanhtutoo95@gmail.com');
 
         });
     }
 
-       public function failed($e)
+       public function failed(Exception $exception)
     {
         // Send user notification of failure, etc...
            $user = new User();

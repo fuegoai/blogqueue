@@ -17,4 +17,11 @@ Route::get('/', function () {
 
 Route::get('/', 'HomeController@index');
 Route::get('/notify', 'HomeController@notify');
+Route::get('/report', 'HomeController@report');
 Route::get('/send', 'HomeController@send');
+
+Route::get('/slack', function () {
+$user = App\User::first();
+$user->notify(new Newslack());
+   echo "A slack notification has been send";
+});

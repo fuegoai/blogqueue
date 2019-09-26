@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\SlackMessage;
 
-class TemplateEmail extends Notification
+class TemplateSlack extends Notification
 {
     use Queueable;
 
@@ -38,17 +39,10 @@ class TemplateEmail extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toSlack($notifiable)
     {
-        // return (new MailMessage)
-        //             ->level('info')// It is kind of email. Available options: info, success, error. Default: info
-
-        //             ->line('The introduction to the notification.')
-        //             ->action('Notification Action', url('/'))
-        //             ->line('Thank you for using our application!');
-        return (new MailMessage)
-            ->subject('aaaa')
-            ->view('welcome', ['message' => 'aasdfasdf']);
+      return (new SlackMessage)
+           ->content('A new visitor has visited to your application . $this->user->first(1->name)');
     }
 
     /**

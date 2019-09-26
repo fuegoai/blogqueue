@@ -9,7 +9,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    public function routeNotificationForSlack()
+   {
+       return 'https://hooks.slack.com/services/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';
+   }
     /**
      * The attributes that are mass assignable.
      *
